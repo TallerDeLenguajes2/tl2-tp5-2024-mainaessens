@@ -82,21 +82,11 @@ public class ProductoRepository{
      using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
             {
                 string query = "DELETE FROM Productos WHERE idProducto = @IdProducto"; 
-                SqliteCommand command = new SqliteCommand(query, connection);
-                command.Parameters.Add(new SqliteParameter("@IdProducto", id));
                 connection.Open();
-                using(SqliteDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        prod = new Productos();
-                        prod.IdProducto = Convert.ToInt32(reader["idProducto"]);
-                        prod.Descripcion = reader["Descripcion"].ToString();
-                        prod.Precio = Convert.ToInt32(reader["Precio"]);
-                    }
-                }
+                var command = new SqliteCommand(query, connection); 
+                command.Parameters.Add(new SqliteParameter("@IdProducto", id)); 
+                command.ExecuteNonQuery();
                 connection.Close();
-
             }
     }
 }
