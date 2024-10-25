@@ -1,0 +1,15 @@
+-- Ejercicio 3
+INSERT INTO Productos (Descripcion, Precio) VALUES ('prueba', 100);
+
+INSERT INTO Presupuestos (NombreDestinatario, FechaCreacion) VALUES ('Maia Guadalupe Naessens', '2024-10-25');
+
+INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (3, 2, 2);-- 3 unidades del producto con id 2 en el presupuesto 2
+
+ UPDATE Productos
+ SET Descripcion = 'Teclado Mecánico Logitech',
+ Precio = 20000
+ WHERE idProducto = 3;
+ 
+UPDATE Presupuestos SET NombreDestinatario = 'Maia Naessens' WHERE idPresupuesto = 1;
+
+DELETE FROM PresupuestosDetalle WHERE idPresupuesto = 1 AND idProducto = 2;
