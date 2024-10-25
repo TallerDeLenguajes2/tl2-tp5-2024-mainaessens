@@ -3,7 +3,7 @@ public class Productos{
     private string descripcion; 
     private int precio;
 
-    public int IdProducto { get => idProducto;} //saco los sets, no quiero que me editen el producto después de cargado el objeto. 
-    public string Descripcion { get => descripcion; }
-    public int Precio { get => precio;}
+    public int IdProducto { get => idProducto; set => idProducto = value; }
+    public string Descripcion { get => descripcion; set => descripcion = value; }
+    public int Precio { get => precio; set => precio = value; }
 }
