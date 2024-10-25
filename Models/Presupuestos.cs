@@ -22,7 +22,7 @@ public class Presupuestos{
 
     public void AgregarProducto(Productos prod, int cant){
         PresupuestoDetalle pd = new PresupuestoDetalle(); 
-        pd.Producto = prod; 
+        pd.CargaProducto(prod); 
         pd.Cantidad = cant; 
         detalle.Add(pd);
     }
