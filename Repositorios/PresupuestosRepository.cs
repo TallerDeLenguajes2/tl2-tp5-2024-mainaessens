@@ -11,11 +11,12 @@ public class PresupuestosRepository
     {
         using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
         {
-            var query = "INSERT INTO Presupuestos (NombreDestinatario) VALUES (@NombreDestinatario)";
+            var query = "INSERT INTO Presupuestos (NombreDestinatario, FechaCreacion) VALUES (@NombreDestinatario, @FechaCreacion)";
             connection.Open();
             using (var command = new SqliteCommand(query, connection))
             {
                 command.Parameters.Add(new SqliteParameter("@NombreDestinatario", pres.NombreDestinatario));
+                command.Parameters.Add(new SqliteParameter("@FechaCreacion", pres.FechaCreacion));
                 command.ExecuteNonQuery();
             }
         }
@@ -80,7 +81,7 @@ public class PresupuestosRepository
     {
         using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
         {
-            string query = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, cantidad) VALUES (@idPresupuesto, @idProducto, @cantidad)";
+            string query = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (@idPresupuesto, @idProducto, @cantidad)";
             connection.Open();
             using (var command = new SqliteCommand(query, connection))
             {

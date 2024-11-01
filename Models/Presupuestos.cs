@@ -2,10 +2,12 @@ public class Presupuestos{
     private int idPresupuesto; 
     private string nombreDestinatario; 
     private List<PresupuestoDetalle> detalle;
+    private DateTime fechaCreacion;
 
-    public int IdPresupuesto { get => idPresupuesto;}
-    public string NombreDestinatario { get => nombreDestinatario;}
-    public List<PresupuestoDetalle> Detalle { get => detalle; }
+    public int IdPresupuesto { get => idPresupuesto; set => idPresupuesto = value; }
+    public string NombreDestinatario { get => nombreDestinatario; set => nombreDestinatario = value; }
+    public List<PresupuestoDetalle> Detalle { get => detalle; set => detalle = value; }
+    public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
 
     public double MontoPresupuesto(){
         return detalle.Sum(d => d.Producto.Precio * d.Cantidad);

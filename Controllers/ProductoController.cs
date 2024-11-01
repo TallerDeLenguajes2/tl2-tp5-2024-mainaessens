@@ -31,7 +31,29 @@ public class ProductoController : ControllerBase
     }
 
     // PUT/api/Producto/{Id}: Permite modificar un nombre de un Producto.
+    [HttpPut("{id}")]
+    public ActionResult ModificarProducto(int id, Productos productoActualizado)
+    {
+        if (productoActualizado == null || string.IsNullOrEmpty(productoActualizado.Descripcion))
+        {
+            return BadRequest("El producto debe tener una descripción y un precio válido");
+        }
 
+        var productoExistente = productoRepository.ObtenerProductoPorId(id);
+        if (productoExistente == null)
+        {
+            return NotFound($"No se encontró un producto con el ID {id}");
+        }
+
+        // Actualiza los datos del producto
+        productoExistente.Descripcion = productoActualizado.Descripcion;
+        productoExistente.Precio = productoActualizado.Precio;
+
+        // Llama al método de repositorio para actualizar en la base de datos
+        productoRepository.ModificarProducto(productoExistente.IdProducto, productoExistente);
+
+        return Ok();
+    }
 
 
 }
